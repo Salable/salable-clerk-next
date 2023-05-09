@@ -1,8 +1,22 @@
-import React from "react"
-import type { AppProps } from "next/app"
+import "/styles/globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import Head from "next/head";
+import Layout from "/components/Layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const NextApp = ({ Component, pageProps }) => {
 
-export default MyApp
+  return (
+    <ClerkProvider {...pageProps}>
+      <Head>
+        <title>{process.env["NEXT_PUBLIC_PRODUCT_TITLE"]}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Layout>
+          <Component {...pageProps} />
+      </Layout>
+    </ClerkProvider>
+  );
+};
+
+export default NextApp;
