@@ -16,7 +16,7 @@
       "start": "next start"
     },
     "dependencies": {
-      "@clerk/nextjs": "^4.17.3",
+      "@clerk/nextjs": "^4.16.4",
       "@salable/node-sdk": "^1.6.2",
       "@salable/react-sdk": "1.8.0",
       "encoding": "^0.1.13",
