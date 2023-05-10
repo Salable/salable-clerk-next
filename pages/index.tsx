@@ -4,7 +4,7 @@ import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import React from 'react';
 import ClerkStatus from "/components/ClerkStatus";
 import {  useSalable } from "/components/salable";
-
+import { SalableStatus } from "/components/SalableStatus"
 
 export const getServerSideProps = async () => {
   try {
@@ -18,17 +18,12 @@ export const getServerSideProps = async () => {
 
 const IndexPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { user } = useUser()
-  const { capabilities } = useSalable()
+  const { capabilities, licenses } = useSalable()
   return (
     <main className={styles.main}>   
           <SignedIn>
               <ClerkStatus user={user} />
-              <div>
-                <h3>Salable - Status</h3>
-                <div>
-                  Capabilities:  {capabilities.join(", ")}
-                </div>
-              </div>
+              <SalableStatus capabilities={capabilities} licenses={licenses} />
           </SignedIn>     
     </main>
   );

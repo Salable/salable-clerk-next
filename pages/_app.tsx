@@ -3,11 +3,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
 import Layout from "/components/Layout";
 import { SalableProvider } from "/components/salable";
-const NextApp = ({ Component, pageProps }) => {
 
+const NextApp = ({ Component, pageProps }) => {
   return (
     <ClerkProvider {...pageProps}>
-      <SalableProvider {...pageProps}>
+      <SalableProvider>
           <Head>
             <title>{process.env["NEXT_PUBLIC_PRODUCT_TITLE"]}</title>
             <link rel="icon" href="/favicon.ico" />

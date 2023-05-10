@@ -14,6 +14,7 @@ export const SalableProvider = ({ children }) => {
       try {
         const res = await fetch("/api/salable");
         const body = await res.json();
+        console.dir(body)
         setCapabilities(body["capabilities"])
         setUserId(body["id"])
         setLicenses(body["licenses"])
@@ -32,7 +33,7 @@ export const SalableProvider = ({ children }) => {
 
 
     return (
-      <SalableContext.Provider value={{ capabilities, licensed, setCapabilities, userId, licenses}}>
+      <SalableContext.Provider value={{capabilities, licensed, userId, licenses}}>
         {children}
       </SalableContext.Provider>
     );
@@ -44,7 +45,7 @@ export const useSalable = () => {
 };
 
 export const IsLicensed = ({children, check}) => {
-  const { licensed, capabilities } = useSalable();
+  const { capabilities } = useSalable();
   if (capabilities.includes(check)) {
     return children
   } 
@@ -52,7 +53,7 @@ export const IsLicensed = ({children, check}) => {
 }
 
 export const IsNotLicensed = ({children, check}) => {
-  const { licensed, capabilities } = useSalable();
+  const { capabilities } = useSalable();
   if (capabilities.includes(check)) {
     return null
   } 
